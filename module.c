@@ -7,6 +7,10 @@
 
 #define TARGET "uptime_proc_show"
 
+#ifndef lm_alias
+#define lm_alias(x) __va(__pa_symbol(x))
+#endif
+
 const char stub[] = { 0x31, 0xc0 /* xor %eax,%eax */, 0xc3 /* retq */ };
 #define STUB_SIZE (sizeof(stub))
 char saved[STUB_SIZE];
