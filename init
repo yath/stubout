@@ -1,0 +1,6 @@
+#!/bin/sh
+mkdir /proc
+mount proc /proc -t proc
+insmod *.ko
+sh
+echo o > /proc/sysrq-trigger
