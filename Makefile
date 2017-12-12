@@ -1,6 +1,6 @@
 MODULE_NAME := stubout
 
-ifneq ($(KERNELRELEASE),)
+ifneq ($(KBUILD_CFLAGS),)
 # Kbuild
 obj-m  := $(MODULE_NAME).o
 $(MODULE_NAME)-y := module.o
@@ -9,6 +9,9 @@ else
 KVER := $(shell uname -r)
 KDIR ?= /lib/modules/$(KVER)/build
 MODULE := $(MODULE_NAME).ko
+
+.PHONY: all
+all: $(MODULE)
 $(MODULE): module.c
 	$(MAKE) -C $(KDIR) M=$$PWD $@
 
