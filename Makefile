@@ -35,7 +35,6 @@ rootfs: busybox/busybox init
 	cp init rootfs/init
 	chmod +x rootfs/init
 
-.PHONY: rootfs.initrd.gz
 rootfs.initrd.gz: $(MODULE) rootfs
 	cp $(MODULE) rootfs/$(MODULE)
 	(cd rootfs; find|cpio -ov -Hnewc | gzip -c) > rootfs.initrd.gz
